@@ -67,4 +67,23 @@ public class Contacto {
 			this.correo = correo;
 		}
 	}
+
+	// Creamos el constuctor con los parámetros pertinentes
+	public Contacto(String nombre, String telefono, String correo) {
+		// Creamos las validaciones
+		if (nombre == null || nombre.isEmpty() || nombre.equals(getNombre())) {
+			throw new IllegalArgumentException("Debe introducir un nombre válido que no exista");
+		}
+		if (telefono.charAt(0) != '6' && telefono.charAt(0) != '9' || telefono.length() != 9) {
+			throw new IllegalArgumentException("Debe introducir un número de teléfono válido");
+		}
+
+		Pattern patron = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Matcher correointorducido = patron.matcher(correo);
+
+		if (correointorducido.find() == false) {
+			throw new IllegalArgumentException("Debe introducir un email válido");
+		}
+
+	}
 }
