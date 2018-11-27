@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Contacto {
-	// \d busca dígitos, | representa un OR
+	// | representa un OR
 	private String ER_TELEFONO = "^[9]+[0-9]{8}|[6]+[0-9]{8}";
 	private String ER_CORREO = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+.+[A-Z]+[A-Z]{2,6}$";
 	private String nombre;
