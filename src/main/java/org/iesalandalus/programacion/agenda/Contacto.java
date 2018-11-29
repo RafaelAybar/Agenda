@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.agenda;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,8 +30,7 @@ public class Contacto {
 
 	// Creamos los setters
 	public void setNombre(String nombre) {
-		if (nombre == null || nombre.isEmpty() || nombre.equals(getNombre().toLowerCase())
-				|| nombre.equals(getNombre().toUpperCase())) {
+		if (nombre == null || nombre.isEmpty() || nombre.equals(getNombre().toLowerCase())) {
 			throw new IllegalArgumentException("Debe introducir un nombre válido que no exista");
 		} else {
 			this.nombre = nombre;
@@ -65,26 +65,42 @@ public class Contacto {
 	// Creamos el constuctor con los parámetros pertinentes
 	public Contacto(String nombre, String telefono, String correo) {
 		// Creamos las validaciones
-		if (nombre == null || nombre.isEmpty() || nombre.equals(getNombre())) {
-			throw new IllegalArgumentException("Debe introducir un nombre válido que no exista");
-		}
-		if (telefono.charAt(0) != '6' && telefono.charAt(0) != '9' || telefono.length() != 9) {
-			throw new IllegalArgumentException("Debe introducir un número de teléfono válido");
-		}
+		setNombre(nombre);
+		setTelefono(telefono);
+		setCorreo(correo);
+	}
 
-		Pattern patron = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-		Matcher correointorducido = patron.matcher(correo);
+	// Creamos los métodos equals y hashCode
+	@Override
+	public int hashCode() {
+		return Objects.hash(correo, nombre, telefono);
+	}
 
-		if (correointorducido.find() == false) {
-			throw new IllegalArgumentException("Debe introducir un email válido");
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
 		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Contacto)) {
+			return false;
+		}
+		Contacto other = (Contacto) obj;
+		return Objects.equals(correo, other.correo) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(telefono, other.telefono);
 	}
 
 	@Override
 	public String toString() {
-		return "Contacto [nombre=" + nombre + " [" + telefono + " correo" + correo + "]";
+		return "Contacto: [" + nombre + " ," + telefono + ", " + correo + "]";
 	}
 
-	// Generamos los métodos toString y hashCcode
+	// Creamos el método getIniciales
+	public String getIniciales(String nombre) {
+		return nombre;
+
+	}
 
 }
