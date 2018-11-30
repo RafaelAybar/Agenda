@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.agenda;
 
 import java.util.Objects;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -99,7 +100,17 @@ public class Contacto {
 
 	// Creamos el método getIniciales
 	public String getIniciales(String nombre) {
-		return nombre;
+		// Usaremos StringTokenizer
+		StringTokenizer cadena = new StringTokenizer(nombre);
+		String iniciales = "";
+		while (cadena.hasMoreTokens()) {
+
+			/* = cadena.nextToken().charAt(0); */
+			String nombreCompletoToken = cadena.nextToken();
+			iniciales += nombreCompletoToken.charAt(0);
+
+		}
+		return iniciales;
 
 	}
 
