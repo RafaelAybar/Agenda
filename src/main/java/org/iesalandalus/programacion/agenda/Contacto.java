@@ -93,11 +93,6 @@ public class Contacto {
 				&& Objects.equals(telefono, other.telefono);
 	}
 
-	@Override
-	public String toString() {
-		return "Contacto: [" + nombre + " ," + telefono + ", " + correo + "]";
-	}
-
 	// Creamos el método getIniciales
 	public String getIniciales(String nombre) {
 		// Usaremos StringTokenizer
@@ -112,6 +107,11 @@ public class Contacto {
 		}
 		return iniciales;
 
+	}
+
+	@Override
+	public String toString() {
+		return "" + getIniciales(nombre) + "[" + nombre + " ," + telefono + ", " + correo + "]";
 	}
 
 }
