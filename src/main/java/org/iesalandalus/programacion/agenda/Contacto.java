@@ -42,7 +42,7 @@ public class Contacto {
 	public void setTelefono(String telefono) {
 		Pattern patronTelefono = Pattern.compile(ER_TELEFONO);
 		Matcher telefonoIntroducido = patronTelefono.matcher(telefono);
-		if (telefonoIntroducido.find() == false) {
+		if (telefonoIntroducido.matches() == false) {
 			throw new IllegalArgumentException("Debe introducir un número de teléfono válido");
 		} else {
 			this.telefono = telefono;
@@ -56,7 +56,7 @@ public class Contacto {
 		Matcher correoIntorducido = patron.matcher(correo);
 
 		// Comprobamos si no se cumple el patrón, es decir si devuelve false
-		if (correoIntorducido.find() == false) {
+		if (correoIntorducido.matches() == false) {
 			throw new IllegalArgumentException("Debe introducir un email válido");
 		} else {
 			this.correo = correo;

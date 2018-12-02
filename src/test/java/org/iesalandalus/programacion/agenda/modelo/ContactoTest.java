@@ -1,11 +1,16 @@
 package org.iesalandalus.programacion.agenda.modelo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
+import org.iesalandalus.programacion.agenda.Contacto;
 import org.junit.Test;
 
 public class ContactoTest {
-	
-/*	private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
+
+	private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
 
 	@Test
 	public void constructorValidoTest() {
@@ -18,7 +23,7 @@ public class ContactoTest {
 		assertEquals("650112233", contacto.getTelefono());
 		assertEquals("andres66@servidor.com", contacto.getCorreo());
 	}
-	
+
 	@Test
 	public void constructorNombreNoValidoTest() {
 		Contacto contacto = null;
@@ -37,7 +42,7 @@ public class ContactoTest {
 			assertNull(contacto);
 		}
 	}
-	
+
 	@Test
 	public void constructorTelefonoNoValidoTest() {
 		Contacto contacto = null;
@@ -77,7 +82,7 @@ public class ContactoTest {
 			assertNull(contacto);
 		}
 	}
-	
+
 	@Test
 	public void constructorCorreoNoValidoTest() {
 		Contacto contacto = null;
@@ -124,9 +129,10 @@ public class ContactoTest {
 			assertNull(contacto);
 		}
 	}
-	
-	//No pruebo los métodos get y set ya que están cubiertos en las pruebas anteriores
-	
+
+	// No pruebo los métodos get y set ya que están cubiertos en las pruebas
+	// anteriores
+
 	@Test
 	public void toStringTest() {
 		Contacto contacto = new Contacto("José Ramón", "950112233", "joseramon.jimenez@iesalandalus.org");
@@ -134,7 +140,7 @@ public class ContactoTest {
 		contacto = new Contacto("josé      ramón  jiménez", "950112233", "joseramon.jimenez@iesalandalus.org");
 		assertEquals("JRJ [950112233, joseramon.jimenez@iesalandalus.org]", contacto.toString());
 	}
-	
+
 	@Test
 	public void igualdadTest() {
 		Contacto contacto1 = new Contacto("José Ramón", "950112233", "joseramon.jimenez@iesalandalus.org");
@@ -147,5 +153,5 @@ public class ContactoTest {
 		assertEquals(contacto1, contacto2);
 		assertEquals(contacto1, contacto3);
 	}
-*/
+
 }
