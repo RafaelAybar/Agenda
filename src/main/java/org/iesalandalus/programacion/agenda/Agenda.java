@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.agenda;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Agenda {
 	// No se ha especificado el número máximo de contactos, por lo que lo
 	// estableceré en 20
@@ -32,7 +34,7 @@ public class Agenda {
 
 	private boolean indiceNoSuperatamano(int indice) {
 		boolean noSupera;
-		if (indice > 20) {
+		if (indice > MAX_CONTACTOS) {
 			noSupera = false;
 		} else {
 			noSupera = true;
@@ -41,11 +43,28 @@ public class Agenda {
 
 	}
 
-	private Contacto buscarPrimerIndiceComprobandoExistencia(int indice) {
-		return null;
+	private int buscarPrimerIndiceComprobandoExistencia(Contacto contacto) throws OperationNotSupportedException {
+		// Buscamos el primer valor del array que no sea nulo
+		// para ello recorremos el array buscando el primer índice nulo
+		int indice = 0;
+
+		for (int i = 0; i < listaContactos.length; i++) {
+			if (listaContactos[i] != null || listaContactos[i].equals(contacto) && indiceNoSuperatamano(i) == false) {
+				throw new OperationNotSupportedException("Ese nombre ya existe, o no hay espacio para ese contacto");
+			} else {
+				indice = i;
+			}
+		}
+		return indice;
 
 	}
 
-	public void anadir(Contacto contacto) {
+	public Contacto[] anadir(Contacto contacto) throws OperationNotSupportedException {
+		int indice = buscarPrimerIndiceComprobandoExistencia(contacto);
+
+		Contacto[] listaContactos = new Contacto[MAX_CONTACTOS];
+		listaContactos[indice] = contacto;
+		return listaContactos;
+
 	}
 }
