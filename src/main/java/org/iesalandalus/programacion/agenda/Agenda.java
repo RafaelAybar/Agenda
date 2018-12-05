@@ -68,6 +68,12 @@ public class Agenda {
 
 	}
 
+	private int buscarIndiceCliente(String nombre) {
+		int indiceCliente = 0;
+		return indiceCliente;
+
+	}
+
 	public Contacto buscar(String nombreAbuscar) {
 		Contacto contactoEncontrado = null;
 		return contactoEncontrado;
