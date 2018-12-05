@@ -67,4 +67,10 @@ public class Agenda {
 		return listaContactos;
 
 	}
+
+	public Contacto buscar(String nombreAbuscar) {
+		Contacto contactoEncontrado = null;
+		return contactoEncontrado;
+
+	}
 }
