@@ -70,6 +70,12 @@ public class Agenda {
 
 	private int buscarIndiceCliente(String nombre) {
 		int indiceCliente = 0;
+
+		for (Contacto listaContacto : listaContactos) {
+			if (listaContactos.getNombre().equals(nombre)) {
+
+			}
+		}
 		return indiceCliente;
 
 	}
