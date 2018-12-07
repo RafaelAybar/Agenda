@@ -23,8 +23,8 @@ public class Agenda {
 		// Entiendo que no cuentan como contactos los valores nulos, por lo que contamos
 		// cada valor que no sea nulo
 		int contador = 0;
-		for (Contacto listaContacto : listaContactos) {
-			if (listaContacto != null) {
+		for (Contacto unContacto : listaContactos) {
+			if (unContacto != null) {
 				contador += 1;
 			}
 		}
@@ -61,28 +61,41 @@ public class Agenda {
 
 	public Contacto[] anadir(Contacto contacto) throws OperationNotSupportedException {
 		int indice = buscarPrimerIndiceComprobandoExistencia(contacto);
-
-		Contacto[] listaContactos = new Contacto[MAX_CONTACTOS];
-		listaContactos[indice] = contacto;
+		// Copiamos el array original en el nuevo
+		Contacto[] listaContactos2 = new Contacto[MAX_CONTACTOS];
+		for (int i = 0; i < listaContactos2.length; i++) {
+			listaContactos[i] = listaContactos2[i];
+		}
+		listaContactos2[indice] = contacto;
+		listaContactos = listaContactos2;
 		return listaContactos;
-
 	}
 
 	private int buscarIndiceCliente(String nombre) {
-		int indiceCliente = 0;
-
-		for (Contacto listaContacto : listaContactos) {
-			if (listaContactos.getNombre().equals(nombre)) {
-
+		int indiceCliente = -1;
+		int contador = 0;
+		while (contador <= listaContactos.length) {
+			if (listaContactos[contador].getNombre().equals(nombre)) {
+				indiceCliente = contador;
+				break;
 			}
+			contador++;
 		}
 		return indiceCliente;
 
 	}
 
-	public Contacto buscar(String nombreAbuscar) {
+	public Contacto buscar(String nombre) {
 		Contacto contactoEncontrado = null;
+		if (buscarIndiceCliente(nombre) == -1) {
+			System.out.println("El contacto introducido no existe");
+		} else {
+			contactoEncontrado = listaContactos[buscarIndiceCliente(nombre)];
+		}
 		return contactoEncontrado;
+	}
+
+	private void desplazarUnaPosicionHaciaIzquierda() {
 
 	}
 }
