@@ -44,31 +44,28 @@ public class Agenda {
 	}
 
 	private int buscarPrimerIndiceComprobandoExistencia(Contacto contacto) throws OperationNotSupportedException {
-		// Buscamos el primer valor del array que no sea nulo
-		// para ello recorremos el array buscando el primer índice nulo
 		int indice = 0;
 
 		for (int i = 0; i < listaContactos.length; i++) {
-			if (listaContactos[i] != null || listaContactos[i].equals(contacto) && indiceNoSuperatamano(i) == false) {
+			if (listaContactos[i] != null && indiceNoSuperatamano(i) == false || listaContactos[i].equals(contacto)) {
 				throw new OperationNotSupportedException("Ese nombre ya existe, o no hay espacio para ese contacto");
 			} else {
 				indice = i;
+				break;
 			}
 		}
 		return indice;
-
 	}
 
-	public Contacto[] anadir(Contacto contacto) throws OperationNotSupportedException {
+	public void anadir(Contacto contacto) throws OperationNotSupportedException {
 		int indice = buscarPrimerIndiceComprobandoExistencia(contacto);
-		// Copiamos el array original en el nuevo
-		Contacto[] listaContactos2 = new Contacto[MAX_CONTACTOS];
-		for (int i = 0; i < listaContactos2.length; i++) {
-			listaContactos[i] = listaContactos2[i];
-		}
-		listaContactos2[indice] = contacto;
-		listaContactos = listaContactos2;
-		return listaContactos;
+		/*
+		 * Copiamos el array original en el nuevo Contacto[] listaContactos2 = new
+		 * Contacto[MAX_CONTACTOS]; for (int i = 0; i < listaContactos2.length; i++) {
+		 * listaContactos2[i] = listaContactos[i]; } listaContactos2[indice] = contacto;
+		 */
+		listaContactos[indice] = contacto;
+
 	}
 
 	private int buscarIndiceCliente(String nombre) {
@@ -95,7 +92,19 @@ public class Agenda {
 		return contactoEncontrado;
 	}
 
-	private void desplazarUnaPosicionHaciaIzquierda() {
+	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
+		for (int i = indice; i < listaContactos.length - 1 && listaContactos[i] != null; i++) {
+			listaContactos[i] = listaContactos[i + 1];
+		}
+	}
 
+	public void borrar(String nombre) throws OperationNotSupportedException {
+		// Primero comprobamos que el usuario a borrar existe
+		Contacto nombreABorrar = buscar(nombre);
+		if (nombreABorrar == null) {
+			throw new OperationNotSupportedException("El usuario que desea borrar no existe");
+		} else {
+			desplazarUnaPosicionHaciaIzquierda(buscarIndiceCliente(nombre));
+		}
 	}
 }

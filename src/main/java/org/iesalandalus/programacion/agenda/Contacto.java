@@ -44,9 +44,8 @@ public class Contacto {
 		Matcher telefonoIntroducido = patronTelefono.matcher(telefono);
 		if (telefonoIntroducido.matches() == false) {
 			throw new IllegalArgumentException("Debe introducir un número de teléfono válido");
-		} else {
-			this.telefono = telefono;
 		}
+		this.telefono = telefono;
 	}
 
 	public void setCorreo(String correo) {
@@ -56,7 +55,7 @@ public class Contacto {
 		Matcher correoIntorducido = patron.matcher(correo);
 
 		// Comprobamos si no se cumple el patrón, es decir si devuelve false
-		if (correoIntorducido.matches() == false) {
+		if (correoIntorducido.matches() == false || correo == null) {
 			throw new IllegalArgumentException("Debe introducir un email válido");
 		} else {
 			this.correo = correo;
@@ -65,7 +64,7 @@ public class Contacto {
 
 	// Creamos el constuctor con los parámetros pertinentes
 	public Contacto(String nombre, String telefono, String correo) {
-		// Creamos las validaciones
+		// Creamos los setters
 		setNombre(nombre);
 		setTelefono(telefono);
 		setCorreo(correo);
