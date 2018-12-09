@@ -31,11 +31,13 @@ public class Contacto {
 
 	// Creamos los setters
 	public void setNombre(String nombre) {
-		if (nombre == null || nombre.isEmpty() || nombre.equals(getNombre().toLowerCase())) {
-			throw new IllegalArgumentException("Debe introducir un nombre válido que no exista");
-		} else {
-			this.nombre = nombre;
+		if (getNombre() != null && nombre.toLowerCase().equals(getNombre().toLowerCase())) {
+			throw new IllegalArgumentException("Ya existe un contacto con ese nombre");
 		}
+		if (nombre.equals(null) || nombre.isEmpty()) {
+			throw new IllegalArgumentException("Debe introducir un nombre válido");
+		}
+		this.nombre = nombre;
 
 	}
 
@@ -57,9 +59,9 @@ public class Contacto {
 		// Comprobamos si no se cumple el patrón, es decir si devuelve false
 		if (correoIntorducido.matches() == false || correo == null) {
 			throw new IllegalArgumentException("Debe introducir un email válido");
-		} else {
-			this.correo = correo;
 		}
+		this.correo = correo;
+
 	}
 
 	// Creamos el constuctor con los parámetros pertinentes
