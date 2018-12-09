@@ -72,9 +72,9 @@ public class MainApp {
 	public static void listarAgenda() {
 		Contacto[] listado = new Contacto[20];
 		listado = Agenda.getContactos();
-		for (int i = 0; i < listado.length; i++) {
-			if (listado[i] != null) {
-				System.out.println("Contacto" + i + " " + listado[i]);
+		for (Contacto element : listado) {
+			if (element != null) {
+				System.out.println("Contacto" + " " + element);
 			}
 		}
 	}

@@ -66,18 +66,18 @@ public class Agenda {
 
 	private static int buscarIndiceCliente(String nombre) {
 		int indiceCliente = -1;
-		Contacto[] lista = Agenda.getContactos();
-		for (int j = 0; j < lista.length; j++) {
+		Contacto[] lista = new Contacto[20];
+		lista = Agenda.getContactos();
 
-			if (lista[j].getNombre().equals(nombre) == false) {
+		for (int i = 0; i < lista.length && lista[i] == null; i++) {
+
+			if (lista[i].getNombre() == null) {
 				throw new IllegalArgumentException("El cliente con el nombre introducido no existe");
-			} else {
-				indiceCliente = j;
+			} else if (lista[i].getNombre().equals(nombre)) {
+				indiceCliente = i;
 			}
 		}
-
 		return indiceCliente;
-
 	}
 
 	public static Contacto buscar(String nombre) {
