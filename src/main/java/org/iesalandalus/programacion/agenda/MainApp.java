@@ -35,11 +35,11 @@ public class MainApp {
 		contacto = new Contacto(nombre, telefono, correo);
 		Agenda.anadir(contacto);
 
-		if (Agenda.buscar(contacto.getNombre()).equals(nombre)) {
-			System.out.println(EXITO);
-		} else {
-			System.out.println(ERROR + " El contacto no se ha podido añadir");
-		}
+		/*
+		 * if (Agenda.buscar(contacto.getNombre()).equals(nombre)) {
+		 * System.out.println(EXITO); } else { System.out.println(ERROR +
+		 * " El contacto no se ha podido añadir"); }
+		 */
 	}
 
 	public static void borrarContacto() throws OperationNotSupportedException {
@@ -70,10 +70,11 @@ public class MainApp {
 	}
 
 	public static void listarAgenda() {
-
-		for (int i = 0; i < Agenda.getContactos().length; i++) {
-			if (Agenda.getContactos()[i] != null) {
-				System.out.println("Contacto" + i + Agenda.getContactos()[i]);
+		Contacto[] listado = new Contacto[20];
+		listado = Agenda.getContactos();
+		for (int i = 0; i < listado.length; i++) {
+			if (listado[i] != null) {
+				System.out.println("Contacto" + i + " " + listado[i]);
 			}
 		}
 	}
