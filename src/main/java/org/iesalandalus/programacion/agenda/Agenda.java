@@ -49,7 +49,7 @@ public class Agenda {
 		Contacto[] lista = new Contacto[20];
 		lista = Agenda.getContactos();
 		for (int i = 0; i < lista.length && lista[i] == null; i++) {
-			if (indiceNoSuperatamano(i) == true) {
+			if (indiceNoSuperatamano(i)) {
 				indice = i;
 			} else {
 				throw new OperationNotSupportedException("No hay espacio para ese contacto");
@@ -67,26 +67,27 @@ public class Agenda {
 	private static int buscarIndiceCliente(String nombre) {
 		int indiceCliente = -1;
 		Contacto[] lista = new Contacto[20];
-		lista = Agenda.getContactos();
+		lista = getContactos();
 
 		for (int i = 0; i < lista.length && lista[i] == null; i++) {
 
-			if (lista[i].getNombre() == null) {
-				throw new IllegalArgumentException("El cliente con el nombre introducido no existe");
-			} else if (lista[i].getNombre().equals(nombre)) {
+			if (lista[i] != null && lista[i].getNombre().equals(nombre)) {
 				indiceCliente = i;
 			}
 		}
+
+
 		return indiceCliente;
 	}
 
 	public static Contacto buscar(String nombre) {
-		Contacto contactoEncontrado = null;
+		Contacto contactoEncontrado;
 		if (buscarIndiceCliente(nombre) == -1) {
-			System.out.println("El contacto introducido no existe");
+			throw new IllegalArgumentException("El contacto introducido no existe");
 		} else {
 			contactoEncontrado = Agenda.listaContactos[buscarIndiceCliente(nombre)];
 		}
+		System.out.print(contactoEncontrado);
 		return contactoEncontrado;
 	}
 

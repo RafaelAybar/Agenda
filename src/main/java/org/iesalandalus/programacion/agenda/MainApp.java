@@ -63,7 +63,7 @@ public class MainApp {
 
 		Contacto contactoBuscado = Agenda.buscar(nombre);
 		if (contactoBuscado == null) {
-			System.out.println(ERROR + " El contacto del nombbre introducido no existe");
+			System.out.println(ERROR + " El contacto del nombre introducido no existe");
 		} else {
 			System.out.println("Contacto: " + contactoBuscado);
 		}
