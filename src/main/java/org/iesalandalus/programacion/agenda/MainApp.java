@@ -46,7 +46,7 @@ public class MainApp {
 		String telefono = Entrada.cadena();
 
 		contacto = new Contacto(nombre, telefono, correo);
-
+		agenda.anadir(contacto);
 	}
 
 	public static void borrarContacto(Agenda agenda) throws OperationNotSupportedException {
