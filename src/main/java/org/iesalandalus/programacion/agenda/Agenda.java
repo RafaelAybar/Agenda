@@ -5,34 +5,25 @@ import javax.naming.OperationNotSupportedException;
 public class Agenda {
 	// No se ha especificado el número máximo de contactos, por lo que lo
 	// estableceré en 20
-	private static int MAX_CONTACTOS = 20;
+	private int MAX_CONTACTOS = 20;
 	private int numContactos;
-	private static Contacto[] listaContactos = new Contacto[MAX_CONTACTOS];
+	private Contacto[] contactos;
 
-	// Creamos el constructor
 	public Agenda() {
-		// Agenda.listaContactos;
+		contactos = new Contacto[MAX_CONTACTOS];
 	}
 
-	public static Contacto[] getContactos() {
+	public Contacto[] getContactos() {
 
-		return listaContactos;
+		return contactos;
 	}
 
 	public int getNumContactos() {
-		// Entiendo que no cuentan como contactos los valores nulos, por lo que contamos
-		// cada valor que no sea nulo
-		int contador = 0;
-		for (Contacto unContacto : listaContactos) {
-			if (unContacto != null) {
-				contador += 1;
-			}
-		}
-		numContactos = contador;
+
 		return numContactos;
 	}
 
-	private static boolean indiceNoSuperatamano(int indice) {
+	private boolean indiceNoSuperatamano(int indice) {
 		boolean noSupera;
 		if (indice > MAX_CONTACTOS) {
 			noSupera = false;
@@ -43,68 +34,77 @@ public class Agenda {
 
 	}
 
-	private static int buscarPrimerIndiceComprobandoExistencia(Contacto contacto)
-			throws OperationNotSupportedException {
+	private int buscarPrimerIndiceComprobandoExistencia(Contacto contacto) throws OperationNotSupportedException {
 		int indice = -1;
-		Contacto[] lista = new Contacto[20];
-		lista = Agenda.getContactos();
-		for (int i = 0; i < lista.length && lista[i] == null; i++) {
+
+		for (int i = 0; i < contactos.length && contactos[i] == null; i++) {
 			if (indiceNoSuperatamano(i)) {
 				indice = i;
 			} else {
 				throw new OperationNotSupportedException("No hay espacio para ese contacto");
 			}
+
 		}
 		return indice;
 	}
 
-	public static void anadir(Contacto contacto) throws OperationNotSupportedException {
+	public void anadir(Contacto contacto) throws OperationNotSupportedException {
+		for (Contacto contacto2 : contactos) {
+			if (contacto2 != null && contacto2.getNombre().equals(contacto.getNombre())) {
+				throw new IllegalArgumentException("El contacto introducido ya existe");
+			}
+		}
 		int indice = buscarPrimerIndiceComprobandoExistencia(contacto);
-		Agenda.listaContactos[indice] = contacto;
+
+		contactos[indice] = contacto;
+
+		numContactos++;
 
 	}
 
-	private static int buscarIndiceCliente(String nombre) {
+	private int buscarIndiceCliente(String nombre) {
 		int indiceCliente = -1;
-		Contacto[] lista = new Contacto[20];
-		lista = getContactos();
 
-		for (int i = 0; i < lista.length && lista[i] == null; i++) {
+		for (int i = 0; i < contactos.length; i++) {
 
-			if (lista[i] != null && lista[i].getNombre().equals(nombre)) {
+			if (contactos[i] != null && contactos[i].getNombre().equals(nombre)) {
 				indiceCliente = i;
 			}
 		}
 
-
 		return indiceCliente;
 	}
 
-	public static Contacto buscar(String nombre) {
+	public Contacto buscar(String nombre) {
 		Contacto contactoEncontrado;
 		if (buscarIndiceCliente(nombre) == -1) {
 			throw new IllegalArgumentException("El contacto introducido no existe");
 		} else {
-			contactoEncontrado = Agenda.listaContactos[buscarIndiceCliente(nombre)];
+			contactoEncontrado = contactos[buscarIndiceCliente(nombre)];
 		}
-		System.out.print(contactoEncontrado);
+
 		return contactoEncontrado;
 	}
 
-	private static void desplazarUnaPosicionHaciaIzquierda(int indice) {
-		for (int i = indice; i < Agenda.listaContactos.length - 1 && Agenda.listaContactos[i] != null; i++) {
-			listaContactos[i] = listaContactos[i + 1];
+	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
+		if (indice == -1) {
+			throw new IllegalArgumentException("No se ha podido desplazar a la izquierda");
+		} else {
+			for (int i = indice; i < contactos.length && contactos[i] != null; i++) {
+				contactos[i] = contactos[i + 1];
+			}
 		}
 	}
 
-	public static void borrar(String nombre) throws OperationNotSupportedException {
+	public void borrar(String nombre) throws OperationNotSupportedException {
 		// Primero comprobamos que el usuario a borrar existe
 		Contacto nombreABorrar = buscar(nombre);
 		if (nombreABorrar == null) {
 			throw new OperationNotSupportedException("El usuario que desea borrar no existe");
 		} else {
-
+			contactos[buscarIndiceCliente(nombre)] = null;
 			desplazarUnaPosicionHaciaIzquierda(buscarIndiceCliente(nombre));
+			numContactos--;
 		}
 	}
 }

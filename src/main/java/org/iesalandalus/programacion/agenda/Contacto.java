@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Contacto {
 	// | representa un OR
 	private String ER_TELEFONO = "^[9]+[0-9]{8}|[6]+[0-9]{8}";
-	private String ER_CORREO = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+.+[A-Z]+[A-Z]{2,6}$";
+	private String ER_CORREO = "^[A-Z0-9._%+-]+@[A-Z0-9.-]*$";
 	private String nombre;
 	private String telefono;
 	private String correo;
@@ -57,7 +57,7 @@ public class Contacto {
 		Matcher correoIntorducido = patron.matcher(correo);
 
 		// Comprobamos si no se cumple el patrón, es decir si devuelve false
-		if (correoIntorducido.matches() == false || correo == null) {
+		if (correo == null || correoIntorducido.matches() == false) {
 			throw new IllegalArgumentException("Debe introducir un email válido");
 		}
 		this.correo = correo;
