@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Agenda.iml" filepath="$PROJECT_DIR$/.idea/modules/Agenda.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Agenda_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Agenda_main.iml" group="Agenda" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Agenda_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Agenda_test.iml" group="Agenda" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Agenda.iml" filepath="$PROJECT_DIR$/Agenda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Agenda.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Agenda.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Agenda.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Agenda.test.iml" />
     </modules>
   </component>
 </project>

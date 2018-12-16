@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="Agenda_main" target="1.8" />
-      <module name="Agenda_test" target="1.8" />
+      <module name="Agenda.main" target="1.8" />
+      <module name="Agenda.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

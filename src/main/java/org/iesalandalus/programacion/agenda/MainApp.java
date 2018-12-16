@@ -45,8 +45,15 @@ public class MainApp {
 		System.out.println("Introduce el teléfono del contacto (móvil o fijo)");
 		String telefono = Entrada.cadena();
 
-		contacto = new Contacto(nombre, telefono, correo);
-		agenda.anadir(contacto);
+
+		try{
+			contacto = new Contacto(nombre, telefono, correo);
+			agenda.anadir(contacto);
+		}
+		catch (IllegalArgumentException e){
+			System.out.println("Los datos introducidos no son correctos");
+		}
+
 	}
 
 	public static void borrarContacto(Agenda agenda) throws OperationNotSupportedException {
