@@ -97,13 +97,23 @@ public class MainApp {
 	public static void ejecutarOpcion(int numeroPrincipal, Agenda agenda) throws OperationNotSupportedException {
 		switch (numeroPrincipal) {
 		case 1:
-			anadircontacto(agenda);
+			try {
+				anadircontacto(agenda);
+			} catch (IllegalArgumentException e){
+				System.out.println("El contacto introducido ya existe");
+			}
+
 			break;
 
 		case 2:
 			System.out.println("Introduce el nombre del contacto a buscar");
 			String nombre = Entrada.cadena();
-			buscarContacto(nombre, agenda);
+			try {
+				buscarContacto(nombre, agenda);
+			}catch (IllegalArgumentException e){
+				System.out.println("El contacto buscado no existe");
+			}
+
 			break;
 
 		case 3:

@@ -51,7 +51,7 @@ public class Agenda {
 	public void anadir(Contacto contacto) throws OperationNotSupportedException {
 		for (Contacto contacto2 : contactos) {
 			if (contacto2 != null && contacto2.getNombre().equals(contacto.getNombre())) {
-				throw new IllegalArgumentException("El contacto introducido ya existe");
+				throw new IllegalArgumentException("Ya existe un contacto con ese nombre");
 			}
 		}
 		int indice = buscarPrimerIndiceComprobandoExistencia(contacto);
